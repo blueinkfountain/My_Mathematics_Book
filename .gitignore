@@ -1,0 +1,14 @@
+# LaTeX 부산물 무시
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+*.ttf
+*.tex
+*.sh
+.vscode/
+
+# 단, 우리가 업로드할 main.pdf만 예외로 허용
+!main.pdf
