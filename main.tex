@@ -1,0 +1,343 @@
+\documentclass[twoside,openright]{report}
+
+
+\input{settings.tex}
+
+\title{Math Note}
+\author{Jong Won}
+\affil{University of Seoul, Mathematics}
+\date{}
+% \sloppy
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\noindent Patch Note: \\
+\dated{2026/03/03 -}{
+\item End of TEPS. Start Mathematics.
+}
+
+
+
+\addparttoc{Algebra}
+\newpage
+
+\chapter{Prelininary}
+\begin{definition}
+    Let $G$ be a set. \\
+    A map $\cdot: G \times G \to G : (a, b) \mapsto a \cdot b$ is called \textit{Binary Operation} on $G$. \\
+    The Binary Operation is said to be:
+    \begin{enumerate}
+        \item \textit{Associative} if: for all $a, b, c \in G$, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+        \item \textit{Commutative} if: for all $a, b \in G$, $a \cdot b = b \cdot a$.
+        \item An element $e \in G$ is called \textit{identity} if: for all $g \in G,\ g \cdot e = e \cdot g = g$.
+        \item An element $g \in G$ has \textit{inverse} if: for all $g \in G$, there exists $g^{-1} \st g^{-1} \cdot g = e\ \operatorname{or}\ g \cdot g^{-1} = e$.
+        \item Binary Operation $\times:G \times G \to G$ is \textit{distributive} with respect to a Binary Operation $+:G \times G \to G$ if:
+        \begin{align*}
+            \text{For all $a,b,c \in G$, }
+            \begin{cases}
+                (a + b) \times c = a \times c + b \times c \\
+                a \times (b + c) = a \times b + a \times c
+            \end{cases}
+        \end{align*}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Let $G, A$ be sets. \\
+    A map $\ast: G \times A \to A:(g, a) \mapsto g \ast a$ is called \textit{Action} of $G$ on $A$. \\
+    The Action is said to be with respect to a Binary Operation $+, \cdot:G \times G \to G$ if:
+    \begin{enumerate}
+        \item Associative with respect to $\cdot$ if: for all $g_1, g_2 \in G, a \in A,\ (g_1 \cdot g_2) \ast a = g_1 \ast (g_2 \ast a)$.
+        \item Distributive with respect to $+$ if: for all $g_1, g_2 \in G, a \in A,\ (g_1 + g_2) \ast a = g_1 \ast a +_A g_2 \ast a$.
+        \item Distributive with respect to $+_A$ if: for all $g \in G, a_1, a_2 \in A,\ g \ast (a_1 +_A a_2) = g \ast a_1 +_A g \ast a_2$.
+    \end{enumerate}
+\end{definition}
+
+\include{Group_Theory_Module}
+
+
+\include{Ring_Theory_Module}
+
+\include{Mudule_Theory_Module}
+
+\include{Vector_Space_Theory_Module}
+
+%Concentrate to General Theory of Vector Space and Linear map.
+
+\chapter{Field Theory}
+
+\chapter{Galois Theory}
+
+\addparttoc{Number Theory}
+\include{Number_Theory_Module}
+
+\addparttoc{Linear Algebra}
+%Studying Finite Dimension Vector Space and Linear map.
+
+\addparttoc{Topology}
+\chapter{General Topology}
+\section{Topology}
+\section{Basis}
+\section{Subspace}
+\section{Product Space}
+\section{Topological Map}
+\section{Separation Axiom}
+\section{Compactness}
+\section{Connectedness}
+\section{Tietze Extension Theorem}
+
+\chapter{Metric Space}
+
+\section{Metric Space}
+
+\section{Compact Metric Space}
+
+\section{Complete Metric Space}
+
+\section{Uryson Metrization Theorem}
+
+
+
+\chapter{Geometric Topology}
+\section{Quotient Space}
+\section{Manifold}
+
+\chapter{Algebraic Topology}
+\section{Homotopy}
+\section{Fundamental Group}
+
+\addparttoc{Analysis}
+
+\include{Basic_Analysis_Module}
+
+\chapter{Measure Theory}
+\section{Sigma Algebra}
+\section{Measurable}
+\section{Lebesgue Integral}
+
+\chapter{Complex Analysis}
+\section{Preliminary}
+\subsection{Algebra on Complex Numbers}
+\subsection{Inequality}
+\subsection{Geomeotric Representation}
+
+\section{Analytic Funtions}
+
+\section{Elementary Functions}
+
+\section{Complex Integral}
+
+
+
+\chapter{Fourier Analysis}
+
+
+\chapter{Analysis on Manifolds}
+
+\section{Basic Definition}
+
+\begin{definition}
+    Let $A \subset \mathbb{R}^m$; $f:A \to \mathbb{R}^n$, suppose $A$ contains an Open Neiborhood of a point $\mathbf{a}$. \\
+    Given non-zero vector $\mathbf{u} \in \mathbb{R}^m$, define \textit{directional derivative} of $f$ at $\mathbf{a}$ with respect to $\mathbf{u}$:
+    \begin{align*}
+        f'(\mathbf{a}; \mathbf{u}) \defequal \lim_{t \to 0} \frac{f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a})}{t}
+    \end{align*}
+    if the limit exists.
+\end{definition}
+
+\begin{definition}
+    Let $A \subset \mathbb{R}^m$; $f:A \to \mathbb{R}^n$, suppose $A$ contains an Open Neiborhood of a point $\mathbf{a}$. \\
+    A map $f$ is said to be \textit{differentiable} at $\mathbf{a}$ if: there exists a linear map $T \in \mathcal{L}(\mathbb{R}^m, \mathbb{R}^n)$ such that
+    \begin{align*}
+        \frac{f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - T(\mathbf{h})}{\|\mathbf{h}\|} \to \mathbf{0} \as \mathbf{h} \to \mathbf{0}
+    \end{align*}
+    More rigorously,
+    \begin{align*}
+        \forall \varepsilon > 0,\
+        \exists \delta >0 \st
+        \forall \mathbf{h} \in \mathbb{R}^m,\
+        0 < \|\mathbf{h}\| < \delta \implies \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - T(\mathbf{h})\|}{\|\mathbf{h}\|} < \varepsilon
+    \end{align*}
+    The linear map $T$ satisfying the above condition is called \textit{derivative} of $f$ at $\mathbf{a}$.
+\end{definition}
+\begin{lemma}
+    Let $A \subset \mathbb{R}^m$; $f:A \to \mathbb{R}^n$, suppose $A$ contains an Open Neiborhood of a point $\mathbf{a}$. \\
+    If linear maps $T, U \in \mathcal{L}(\mathbb{R}^m, \mathbb{R}^n)$ are derivative of $f$ at $\mathbf{a}$, then $T = U$.
+\end{lemma}
+\begin{proof}
+    Suppose $T, U$ are derivative of $f$ at $\mathbf{a}$. \\
+    For any $\varepsilon > 0$, there exist $\delta_1, \delta_2 > 0$ such that
+    \begin{align*}
+        \forall \mathbf{h} \in \mathbb{R}^m,\
+        0 < \|\mathbf{h}\| < \delta
+        \implies 
+        \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - T(\mathbf{h})\|}{\|\mathbf{h}\|},\
+        \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - U(\mathbf{h})\|}{\|\mathbf{h}\|} < \frac{\varepsilon}{2}
+    \end{align*}
+    The Triangle inequality gives that: for small enough $\mathbf{h} \in \mathbf{h}$,
+    \begin{align*}
+        \frac{\|T(\mathbf{h}) - U(\mathbf{h})\|}{\|\mathbf{h}\|}
+        \leq 
+        \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - T(\mathbf{h})\|}{\|\mathbf{h}\|} +
+        \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - U(\mathbf{h})\|}{\|\mathbf{h}\|}
+        < \varepsilon
+    \end{align*}
+    Now, let $\varepsilon > 0$ be given, and Put $\mathbf{u} \in \mathbb{R}^m$ be a fixed non-zero vector. Then, for small enough $t > 0$,
+    \begin{align*}
+        \frac{\|T(t \cdot \mathbf{u}) - U(t \cdot \mathbf{u})\|}{\|t \cdot \mathbf{u}\|}
+        = \frac{|t| \|T(\mathbf{u}) - U(\mathbf{u})\|}{|t| \|\mathbf{u}\|}
+        = \frac{\|T(\mathbf{u}) - U(\mathbf{u})\|}{\|\mathbf{u}\|}
+        < \frac{\varepsilon}{\|\mathbf{u}\|}
+    \end{align*}
+    In sum, For any $\varepsilon > 0$, and for any non-zero vector $\mathbf{u}$, $\|T(\mathbf{u}) - U(\mathbf{u})\| < \varepsilon$.
+    Thus $T = U$.
+\end{proof}
+
+\newpage
+\begin{theorem}
+    Let $f:A \to \mathbb{R}^n$ where $A \subseteq \mathbb{R}^m$. \\
+    If $f$ is differentiable at $\mathbf{a} \in \mathbb{R}^m$, then all the directional derivative of $f$ at $\mathbf{a}$ exists and
+    \begin{align*}
+        f'(\mathbf{a} ; \mathbf{u}) = D f(\mathbf{a}) \cdot \mathbf{u}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Let non-zero $\mathbf{u} \in \mathbb{R}^m$ be given. For any $\varepsilon > 0$, there exists $\delta > 0$ such that
+    \begin{align*}
+        0 < |t| < \delta \implies \frac{\|f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a}) - D f(\mathbf{a}) \cdot t \mathbf{u}\|}{\|t \mathbf{u}\|} < \frac{\varepsilon}{\|\mathbf{u}\|}
+    \end{align*}
+    Arrange above formular,
+    \begin{align*}
+        \frac{\|f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a}) - D f(\mathbf{a}) \cdot t \mathbf{u}\|}{\|t \mathbf{u}\|}
+        = \frac{1}{|t| \|\mathbf{u}\|} \cdot
+        \|f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a}) - t Df(\mathbf{a}) \cdot \mathbf{u} \|
+        = \frac{1}{\|u\|} \cdot
+        \left\|\frac{f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a})}{t} - Df(\mathbf{a}) \cdot \mathbf{u} \right\|
+    \end{align*}
+    That is, above formular can rearrange to
+    \begin{align*}
+        0 < |t| < \delta \implies \left\|\frac{f(\mathbf{a} + t \mathbf{u}) - f(\mathbf{a})}{t} - Df(\mathbf{a}) \cdot \mathbf{u} \right\| < \varepsilon
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Let $f:A \to \mathbb{R}^n$ where $A \subseteq \mathbb{R}^m$. \\
+    If $f$ is differentiable at $\mathbf{a} \in A$, then $f$ is continuous at $\mathbf{a}$.
+\end{theorem}
+\begin{proof}
+    Denote $B$ be a Derivative of $f$ at $\mathbf{a}$. 
+    By Triangle inequality, for any $\mathbf{h} \in \mathbb{R}^m$, 
+    \begin{align*}
+        \|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a})\| \leq
+        \|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - B \cdot \mathbf{h}\| + \|B \cdot \mathbf{h}\|
+        = \|\mathbf{h}\| \cdot \frac{\|f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) - B \cdot \mathbf{h}\|}{\|\mathbf{h}\|} + \|B \cdot \mathbf{h}\|
+    \end{align*}
+    And the Right side converges to zero, so left side too.
+\end{proof}
+
+\begin{definition}
+    Let $f:A \to \mathbb{R}$ where $A \subseteq \mathbb{R}^m$. \\
+    For an integer $1 \leq j \leq m$, define \textit{$j^{\text{th}}$ Derivative} at $\mathbf{a} \in \mathbb{R}^m$:
+    \begin{align*}
+        D_j f(\mathbf{a}) \defequal \lim_{t \to 0} \frac{f(\mathbf{a} + t \cdot \mathbf{e_j}) - f(\mathbf{a})}{t}
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    Let $f:A \to \mathbb{R}$ where $A \subseteq \mathbb{R}^m$. \\
+    If $f$ is differentiable at $\mathbf{a} \in A$, then the Derivative $Df(\mathbf{a})$ can represent as:
+    \begin{align*}
+        Df(\mathbf{a}) = \begin{bmatrix}
+            D_1 f(\mathbf{a}) &
+            D_2 f(\mathbf{a}) &
+            \cdots
+            D_m f(\mathbf{a})
+        \end{bmatrix}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Put the Derivative of $f$ at $\mathbf{a}$:
+    \begin{align*}
+        Df(\mathbf{a}) = \begin{bmatrix}
+            \lambda_1 & \lambda_2 & \cdots & \lambda_m
+        \end{bmatrix}
+        \in \mathcal{M}_{1, m}
+    \end{align*}
+    Applying this to above theorem: for each $1 \leq j \leq m$,
+    \begin{align*}
+        D_j f(\mathbf{a})
+        = f'(\mathbf{a}, \mathbf{e}_j)
+        = Df(\mathbf{a}) \cdot \mathbf{e}_j
+        = \lambda_j
+    \end{align*}
+    Thus,
+    \begin{align*}
+        Df(\mathbf{a})
+        =
+        \begin{bmatrix}
+            \lambda_1 & \lambda_2 & \cdots & \lambda_m
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            D_1 f(\mathbf{a}) & D_2 f(\mathbf{a}) & \cdots & D_m f(\mathbf{a})
+        \end{bmatrix}
+    \end{align*}
+\end{proof}
+
+
+\newpage
+\begin{theorem}
+    Let $f: A \to \mathbb{R}^n$ where $A \subseteq \mathbb{R}^m$. For each $j$, let $f_i:A \to \mathbb{R}: \mathbf{x} \mapsto p_i(\mathbf{x})$ so that
+    \begin{align*}
+        f(\mathbf{x}) = 
+        \begin{bmatrix}
+            f_1(\mathbf{x}) \\
+            f_2(\mathbf{x}) \\
+            \vdots \\
+            f_n(\mathbf{x})
+        \end{bmatrix}
+    \end{align*}
+    Then, following equivalent statement be true:
+    \begin{center}
+        $f$ is differentiable at $\mathbf{a}$ \textit{if and only if}
+        all $f_i$ is differentiable at $\mathbf{a}$
+    \end{center}
+    Moreover, if $f$ is differentiable at $\mathbf{a}$,
+    \begin{align*}
+        Df(\mathbf{a})
+        = \begin{bmatrix}
+            Df_1(\mathbf{x}) \\
+            Df_2(\mathbf{x}) \\
+            \vdots \\
+            Df_n(\mathbf{x})
+        \end{bmatrix}
+    \end{align*}
+\end{theorem}
+
+\addparttoc{Differential Geometry}
+
+
+
+\addparttoc{Differential Equation}
+
+
+
+\addparttoc{}
+
+
+
+
+
+
+
+
+\end{document}
+
+
+%cd /Users/persist/Desktop/My_Mathematics_Book
+%latexmk -pdf -bibtex main.tex
+%latexmk -xelatex -synctex=1 -interaction=nonstopmode main.tex

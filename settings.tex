@@ -1,0 +1,218 @@
+\usepackage[english]{babel}
+\usepackage{kotex}    
+
+\usepackage[letterpaper,top=1.2cm,bottom=1.2cm,left=1.2cm,right=1.2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath, amsthm, amssymb, graphicx, enumitem, authblk, tikz, tikz-cd, verbatim, relsize}
+\usepackage{thmtools}
+\usepackage{tcolorbox}
+\usepackage{forest} % 트리 구조를 위한 패키지
+\usepackage{mathtools}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{lmodern}
+
+\DeclareMathAlphabet{\mathtt}{OT1}{lmtt}{m}{n}
+
+\usepackage{fontspec}
+\setmainfont{neodgm_code.ttf}[
+  Path = ./,
+  UprightFont = *,
+  Ligatures = TeX,
+  Scale = MatchLowercase,
+  % 폰트에 Bold/Italic이 없을 때 임시로:
+  AutoFakeBold = 2.0,
+  AutoFakeSlant = 0.2
+]
+
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes,backgrounds}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows.meta, positioning, matrix, fit}
+
+% \usetikzlibrary{arrows.meta, positioning, external}
+% \pgfplotsset{compat=1.18} % Set compatibility for pgfplots
+
+\newtheoremstyle{romanstyle} % 스타일 이름
+  {10pt} % 위쪽 여백
+  {10pt} % 아래쪽 여백
+  {\rmfamily} % 본문 로마체
+  {} % 들여쓰기 없음
+  {\bfseries} % 제목 굵게
+  {.} % 제목 뒤 구두점
+  { } % 제목과 본문 사이의 기본 간격
+  {} % 제목 레이아웃 기본값
+
+% 새 스타일 적용
+\theoremstyle{romanstyle}
+
+
+% 1) 박스형 스타일 프리셋
+\declaretheoremstyle[
+  headfont=\bfseries, bodyfont=\rmfamily,
+  headpunct={.}, postheadspace=.5em,
+  mdframed={linewidth=0.6pt, linecolor=black, backgroundcolor=white,
+            innerleftmargin=8pt, innerrightmargin=8pt,
+            innertopmargin=6pt, innerbottommargin=6pt,
+            skipabove=10pt, skipbelow=10pt, roundcorner=0pt}
+]{thm-plain}
+
+\declaretheoremstyle[
+  headfont=\bfseries, bodyfont=\rmfamily, headpunct={.},
+  postheadspace=.5em,
+  mdframed={linewidth=1pt, linecolor=black, backgroundcolor=gray!4,
+            leftline=true, rightline=false, topline=false, bottomline=false,
+            innerleftmargin=10pt, innerrightmargin=8pt,
+            innertopmargin=6pt, innerbottommargin=6pt,
+            skipabove=10pt, skipbelow=10pt}
+]{thm-left}
+
+\declaretheoremstyle[
+  headfont=\bfseries, bodyfont=\rmfamily, headpunct={.},
+  postheadspace=.5em,
+  mdframed={linewidth=0.8pt, linecolor=black, backgroundcolor=white,
+            roundcorner=2pt, tikzsetting={dash pattern=on 3pt off 2pt},
+            innerleftmargin=8pt, innerrightmargin=8pt,
+            innertopmargin=6pt, innerbottommargin=6pt}
+]{thm-dashed}
+
+\declaretheoremstyle[
+  headfont=\bfseries, bodyfont=\rmfamily, headpunct={.},
+  postheadspace=.5em,
+  mdframed={linewidth=0.8pt, linecolor=blue!60!black, backgroundcolor=black!3,
+            roundcorner=1.5pt,
+            innerleftmargin=8pt, innerrightmargin=8pt,
+            innertopmargin=6pt, innerbottommargin=6pt}
+]{thm-blue}
+
+\declaretheorem[style=thm-left,   numberwithin=subsection]{theorem}
+\declaretheorem[style=thm-blue,   numberwithin=subsection]{proposition}
+\declaretheorem[style=thm-dashed, numberwithin=subsection]{lemma}
+\declaretheorem[style=thm-blue,   numberwithin=subsection]{corollary}
+\declaretheorem[style=thm-plain,  numberwithin=subsection]{definition}
+
+\newtheorem{axiom}{Axiom}
+
+% Unnumbered environments
+\newtheorem*{observation}{Observation}
+\newtheorem*{example}{Example}
+\newtheorem*{solution}{Solution}
+
+% Mathematical commands
+\newcommand{\st}{ \ \operatorname{s.t} \ }
+\newcommand{\as}{ \ \operatorname{as} \ }
+\newcommand{\setx}{\{x_0, x_1, \dots, x_n\}}
+\newcommand{\setn}{\{1, \dots, n\}}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\lete}{Let $\epsilon > 0$ be given.}
+\newcommand{\fs}{\text{ for some }}
+\newcommand{\defequal}{\overset{\textnormal{def}}{=}}
+\newcommand{\setequal}{\overset{\textnormal{set}}{=}}
+\newcommand*{\aand}{_{\text{ and }}}
+\newcommand*{\oor}{_{\text{ or }}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ipvs}{\langle \, \cdot \, \rangle}
+\newcommand{\diam}{\operatorname{diam}} % Add this line in the preamble
+\newlength{\datedwd}
+\newcommand{\dated}[2]{%
+  \settowidth{\datedwd}{#1}%
+  \noindent
+  \parbox[t]{\datedwd}{\strut #1}%
+  \hspace{0.5em}%
+  \begin{minipage}[t]{\dimexpr\linewidth-\datedwd-0.5em\relax}
+    \vspace{-0.65em}%
+    \begin{enumerate}[label=\arabic*., leftmargin=*, itemsep=0pt, topsep=0pt, parsep=0pt]
+      #2
+    \end{enumerate}
+  \end{minipage}\par
+}
+
+% \addparttoc{제목} 형태로 사용하도록 정의
+\newcommand{\addparttoc}[1]{%
+    \phantomsection
+    \addtocontents{toc}{\protect\addvspace{1.0\baselineskip}} % 목차 내 여백 추가
+    \addcontentsline{toc}{part}{#1}% 목차에 'part' 레벨로 추가
+}
+
+
+% ===================== TOC에 정리 제목(옵션 있을 때만) 자동 추가 ===================== %
+\usepackage{xparse}   %% <<< ADDED
+\usepackage{etoolbox} %% <<< ADDED
+\setcounter{tocdepth}{3}    %% <<< ADDED: subsubsection까지 TOC 표시
+\setcounter{secnumdepth}{3} %% <<< ADDED: (선택) 번호도 3단계까지
+
+% theorem
+\let\theoremOLD\theorem           %% <<< ADDED
+\let\endtheoremOLD\endtheorem     %% <<< ADDED
+\RenewDocumentEnvironment{theorem}{o}{%% <<< ADDED
+  \IfNoValueTF{#1}{%
+    \theoremOLD
+  }{%
+    \theoremOLD
+    \phantomsection
+    \addcontentsline{toc}{subsubsection}{%
+      \protect\numberline{\thetheorem}\ #1}%
+  }%
+}{\endtheoremOLD}
+
+% lemma
+\let\lemmaOLD\lemma
+\let\endlemmaOLD\endlemma
+\RenewDocumentEnvironment{lemma}{o}{%
+  \IfNoValueTF{#1}{%
+    \lemmaOLD
+  }{%
+    \lemmaOLD
+    \phantomsection
+    \addcontentsline{toc}{subsubsection}{%
+      \protect\numberline{\thelemma}\ #1}%
+  }%
+}{\endlemmaOLD}
+
+% proposition
+\let\propositionOLD\proposition
+\let\endpropositionOLD\endproposition
+\RenewDocumentEnvironment{proposition}{o}{%
+  \IfNoValueTF{#1}{%
+    \propositionOLD
+  }{%
+    \propositionOLD
+    \phantomsection
+    \addcontentsline{toc}{subsubsection}{%
+      \protect\numberline{\theproposition}\ #1}%
+  }%
+}{\endpropositionOLD}
+
+% corollary
+\let\corollaryOLD\corollary
+\let\endcorollaryOLD\endcorollary
+\RenewDocumentEnvironment{corollary}{o}{%
+  \IfNoValueTF{#1}{%
+    \corollaryOLD
+  }{%
+    \corollaryOLD
+    \phantomsection
+    \addcontentsline{toc}{subsubsection}{%
+      \protect\numberline{\thecorollary}\ #1}%
+  }%
+}{\endcorollaryOLD}
+
+% definition
+\let\definitionOLD\definition
+\let\enddefinitionOLD\enddefinition
+\RenewDocumentEnvironment{definition}{o}{%
+  \IfNoValueTF{#1}{%
+    \definitionOLD
+  }{%
+    \definitionOLD
+    \phantomsection
+    \addcontentsline{toc}{subsubsection}{%
+      \protect\numberline{\thedefinition}Definition\ #1}%
+  }%
+}{\enddefinitionOLD}
+% ==================================================================== %

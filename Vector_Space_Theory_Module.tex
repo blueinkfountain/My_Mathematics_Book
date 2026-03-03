@@ -1,0 +1,456 @@
+\chapter{Vector Space Theory}
+\section{Vector Space}
+\begin{definition}
+    Suppose that $F$ is a Field, and $V$ is an Abelian Group. \\
+    And, the operation $\cdot: F \times V \to V$ satisfies: For any $a, b \in F$ and $v, w \in V$,
+    $\begin{cases}
+        a \cdot (v + w) = a\cdot v + a\cdot w \\
+        (a + b) \cdot v = a\cdot v + b\cdot v \\
+        (ab) \cdot v = a \cdot (b \cdot v) \\
+        1 \cdot v = v
+    \end{cases}$ \\
+    The triple $(V, +, \cdot)$ is called the \textit{Vector Space} over $F$.
+\end{definition}
+Equivalently, The Vector Space over a field $F$ is $F$-Module.
+\begin{definition}
+    Suppose that $V$ is a Vector Space over a field $F$, and $W \subseteq V$ is a Subset. \\
+    The $W$ is called \textit{Subspace} of $V$ if:
+    $\begin{cases}
+        \text{For any $a \in F,\ w \in W,\ a \cdot w \in W$} \\
+        \text{For any $w_1, w_2 \in W,\ w_1 + w_2 \in W$}
+    \end{cases}$. \\
+\end{definition}
+That is, the Subset of a Vector Space which is closed under the addition and scalar multiplication, then it is a Vector Space.
+\begin{lemma}
+    Arbitrary intersection of Subspace is a Subspace.
+\end{lemma}
+\begin{proof}
+    Suppose that $V$ is a Vector Space, and $W_\alpha \leq V,\ \alpha \in \Lambda$ are Subspaces. \\
+    Using Subspace Criterion: Let $a \in F,\ w_1, w_2 \in \bigcap_{\alpha \in \Lambda} W_\alpha$ be given.
+    Then, for any $\alpha \in \Lambda$, $a \cdot w_1 + w_2 \in W_\alpha$.
+\end{proof}
+This Lemma allows the definition:
+\begin{definition}
+    Suppose that $V$ is a Vector Space over a field $F$, and $S \subseteq V$ be a Subset. \\
+    Define a \textit{Generated Subspace} by $S$ is:
+    \begin{align*}
+        \langle S \rangle \defequal \bigcap_{S \subseteq W \leq V} \hspace{-0.2cm} W
+    \end{align*}
+\end{definition}
+This $\langle S \rangle$ is the \textit{unique smallest} Subspace containing $S$. This $S$ is called \textit{Generating Subset} of $\langle S \rangle$.
+\begin{lemma}
+    Suppose that $V$ is a Vector Space over a field $F$, and $S \subseteq V$ be a Subset. Then,
+    \begin{align*}
+        \langle S \rangle = \{ a_1 \cdot v_1 + \cdots + a_n \cdot v_n \mid n \in \mathbb{N},\ a_i \in F,\ v_i \in S \}
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    First, $\langle S \rangle \supseteq \{ a_1 \cdot v_1 + \cdots + a_n \cdot v_n \mid n \in \mathbb{N},\ a_i \in F,\ v_i \in S \}$, because $\langle S \rangle$ is closed under the opeartions. \\
+    And, the set $\{ a_1 \cdot v_1 + \cdots + a_n \cdot v_n \mid n \in \mathbb{N},\ a_i \in F,\ v_i \in S \}$ is a Subgroup of $V$ containing $S$, \\
+    Hence $\langle S \rangle \subseteq \{ a_1 \cdot v_1 + \cdots + a_n \cdot v_n \mid n \in \mathbb{N},\ a_i \in F,\ v_i \in S \}$.
+\end{proof}
+
+\begin{definition}
+    Let $V$ be a Vector Space over a field $F$, and $W \leq V$ be a Subspace. \\
+    The \textit{Quotient Space} $V/W$ is defined as the set of Cosets of $W$ in $V$:
+    \begin{align*}
+        V/W \defequal \{v + W \mid v \in V\}
+    \end{align*}
+    with the operations: for any $v, v_1, v_2 \in V,\ a \in F$,
+    \begin{align*}
+        (v_1 + W) + (v_2 + W) &\defequal (v_1 + v_2) + W \\
+        a \cdot (v + W) &\defequal (a \cdot v) + W
+    \end{align*}
+\end{definition}
+The well-definedness of above definition is allowed by the follwings. \\
+Observation: 
+for any $v, v' \in V$,
+\begin{align*}
+    v + W = v' + W 
+    \iff v - v' \in W
+    \iff \exists w \in W \st v - v' = w
+\end{align*}
+Now, suppose that $v_1, v_2, v'_1, v'_2 \in V$ 
+with $v_1 + W = v'_1 + W$ and $v_2 + W = v'_2 + W$. \\
+Then, there exist $w_1, w_2 \in W$ such that $v_1 - v'_1 = w_1$ and $v_2 - v'_2 = w_2$. Since above observation,
+\begin{align*}
+    (v_1 + W) + (v_2 + W)
+    = ((v'_1 + w_1) + W) + ((v'_2 + w_2) + W)
+    = (v'_1 + W) + (v'_2 + W)
+\end{align*}
+And, similrarly, the scalr-multiplication is well-defined.
+
+\begin{lemma}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2 \leq $ be subspaces. Then,
+    \begin{enumerate}
+        \item $W_1 + W_2$ is the smallest subspace of $V$ that contains both $W_1$ and $W_2$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    It is clear that $W_1 + W_2$ is a subspace of $V$ by the Subspace Criterion. \\
+    To show that it is the smallest such space, Suppose that $W \leq V$ is a subspace that contains both $W_1$ and $W_2$. \\
+    Then, for any $w_1 + w_2 \in W_1 + W_2$ with $w_i \in W_i$, $w_1 + w_2 \in W$ because closed under the operation.
+\end{proof}
+
+\newpage
+
+\begin{definition}
+    Suppose that $V$ is a Vector Space over $F$, and $S \subseteq V$ is a subset. \\
+    A vector $v \in V$ is called \textit{linear combination of $S$} if: 
+    there exist finite numbers $a_i \in F$ and $v_i \in S$ such that
+    \begin{align*}
+        v = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n
+    \end{align*}
+\end{definition}
+
+\section{Linearly independent}
+\begin{definition}
+    Suppose that $V$ is a Vector Space over a field $F$, and $S \subseteq V$ is a Subset. \\
+    A Subset $S$ is called \textit{Linearly independent} if: For any finite subset $\{v_1, v_2, \ldots, v_n\} \subseteq S$,
+    \begin{align*}
+        a_1 \cdot v_1 + a_2 \cdot v_2 + \cdots + a_n \cdot v_n = 0 \implies a_1 = a_2 = \cdots = a_n = 0
+    \end{align*}
+    If $S$ is not Linearly independent, then it is called \textit{Linearly dependent}.
+\end{definition}
+
+% \begin{lemma}
+%     Suppose that $S \subseteq V$ is a Linearly independent subset of a Vector Space $V$ over $F$. \\
+%     If $v \in V$ is linear combination of $S$ with for some $a_i \in F,\ v_i \in S$,
+%     \begin{align*}
+%         v = a_1 v_1 + a_2 v_2 + \cdots + a_n v_n
+%     \end{align*}
+%     then this representation is unique. Briefly, linear combination of a vector is unique. 
+% \end{lemma}
+% \begin{proof}
+%     First, $v = a_1 \cdot v_1 + \cdots + a_n \cdot v_n$ implies $v \in \langle S \rangle$. \\
+%     Now, suppose that $v \in V$ satisfies $v = a_1 \cdot v_1 + \cdots + a_n \cdot v_n = b_1 \cdot w_1 + \cdots + b_m \cdot w_m$, WLOG $n \leq m$. \\
+%     Put $I \defequal \{i \in \mathbb{N} \mid \exists j \in \mathbb{N} \st v_i = w_j\}$. \\
+%     Then, there is a permutation $\rho: \{1, 2, \ldots, m\} \to \{1, 2, \ldots, m\}$ such that $\forall i \in I,\ v_i = w_{\rho(i)}$. Now,
+%     \begin{align*}
+%         &\sum_{i \in I} a_i \cdot v_i + \sum_{j \notin I} a_j \cdot v_j
+%         = \sum_{i \in I} b_{\rho(i)} \cdot w_{\rho(i)} + \sum_{j \notin I} b_{\rho(j)} \cdot w_{\rho(j)}
+%         = \sum_{i \in I} b_{\rho(i)} \cdot v_i + \sum_{j \notin I} b_{\rho(j)} \cdot w_{\rho(j)} \\
+%         \implies &\sum_{i \in I} (a_i - b_{\rho(i)}) \cdot v_i + \sum_{j \notin I} a_j \cdot v_j - \left(\sum_{j \notin I} b_{\rho(j)} \cdot w_{\rho(j)}\right) = 0
+%     \end{align*}
+%     Since $S$ is linearly independent, for all $j \notin I,\ a_j = b_{\rho(j)} = 0$ and for all $i \in I,\ a_i = b_{\rho(i)}$.
+%     % 1) If $\{v_1, \ldots, v_n \} \cap \{w_1, \ldots, w_m\} = \emptyset$. \\
+%     % \begin{align*}
+%     %     &a_1 \cdot v_1 + \cdots + a_n \cdot v_n = b_1 \cdot w_1 + \cdots + b_m \cdot w_m \\
+%     %     \iff &a_1 \cdot v_1 + \cdots + a_n \cdot v_n - b_1 \cdot w_1 - \cdots - b_m \cdot w_m = 0 \\
+%     %     \implies &a_1 = \cdots = a_n = b_1 = \cdots = b_m = 0
+%     % \end{align*}
+%     % This means $v \in V$ is a zero vector. \\
+%     % 2) If $\{v_1, \ldots, v_n \} \cap \{w_1, \ldots, w_m\} \neq \emptyset$. \\
+%     % Put $\{u_i \mid 1 \leq i \leq j\} = \{v_1, \ldots, v_n \} \cap \{w_1, \ldots, w_m\}$ where $j \leq n$. \\
+%     % \begin{align*}
+%     %     &a_{1} \cdot u_1 + \cdots + a_{j} \cdot u_j + a_{j+1} \cdot v_{j+1} + \cdots + a_n \cdot v_n
+%     %     = b_{1} \cdot u_1 + \cdots + b_{j} \cdot u_j + b_{j+1} \cdot w_{j+1} + \cdots + b_m \cdot w_m \\
+%     %     \iff &(a_{1} - b_{1}) \cdot u_1 + \cdots + (a_{j} - b_{j}) + a_{j+1} \cdot v_{j+1} + \cdots + a_n \cdot v_n 
+%     %     - b_{j+1} \cdot w_{j+1} - \cdots - b_m \cdot w_m = 0 \\
+%     %     \implies & a_{1} = b_{1},\ \ldots,\ a_{j} = b_{j},\ a_{j+1} = \cdots = a_n = b_{j+1} = \cdots = b_m = 0
+%     % \end{align*}
+%     % This means $v = a_1 u_1 + \cdots + a_j u_j$ is the Unique representation of $v \in V$ by linear combination of $S$.
+% \end{proof}
+% This fact enables the definition in the next section.
+
+\newpage
+\section{Basis}
+\begin{definition}
+    Suppose that $V$ is a Vector Space over a field $F$. \\
+    A subset $\beta \subseteq V$ is called the \textit{Basis} of $V$ if:
+    \begin{enumerate}
+        \item $\beta$ is Linearly independent. 
+        \item $\langle \beta \rangle = V$.
+    \end{enumerate}
+\end{definition}
+\begin{lemma}
+    Suppose that $V$ is a Vector Space over a field $F$. Then,
+    \begin{center}
+        $\beta \subset V$ is a Basis of $V$
+        $\iff$
+        For any $v \in V$, there exists a Unique linear combination of $\beta$ that equals $v$.
+    \end{center}
+\end{lemma}
+\begin{proof}
+    Suppose that $\beta \subset V$ is a Basis of $V$. 
+    Because $v \in V = \langle \beta \rangle$, $v$ can be represented a linear combination of $\beta$. \\
+    This representation must be unique. Suppose that $v$ be represented in two different forms:
+    \begin{align*}
+        v = a_1 v_1 + \cdots + a_n v_n = b_1 v_1 + \cdots b_n v_n
+    \end{align*}
+    where $a_i, b_i \in F,\ v_i \in \beta$. Then,
+    \begin{align*}
+        (a_1 - b_1) v_1 + \cdots + (a_n - b_n) v_n = 0 \implies \forall 1 \leq i \leq n,\ a_i = b_i
+    \end{align*}
+    Convesely, suppose that For any $v \in V$, there uniquely exist $a_i \in F,\ v_i \in \beta$ such that
+    \begin{align*}
+        v = a_1 v_1 + \cdots + a_n v_n
+    \end{align*}
+    $\langle \beta \rangle = V$ is clear. And, if $\beta$ is linearly dependent, then
+    there exist a representation of $\beta$ that equals zero:
+    \begin{align*}
+        0 = a_1 v_1 + \cdots + a_n v_n
+    \end{align*}
+    where $v_i \in \beta$, $a_i \in F$ not all zero.
+    This is contradiction with uniqueness.
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2 \leq V$ be finite-dimensional subspaces. \\
+    Then, followings are hold:
+    \begin{enumerate}
+        \item $\dim(W_1 \cap W_2) \leq \min\{\dim W_1, \dim W_2 \}$.
+        \item $\dim(W_1 + W_2) \leq \dim W_1 + \dim W_2$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Proof of 2. Let $\beta_1, \beta_2$ be basis of $W_1, W_2$, respectively.
+    Since $W_i = \langle \beta_i \rangle$,
+    \begin{align*}
+        W_1 + W_2 = \langle \beta_1 \rangle + \langle \beta_2 \rangle
+        &= \{a_1 v_1 + \cdots + a_n v_n \mid n \in \mathbb{N}, v_i \in \beta_1, a_i \in F\}
+        + \{b_1 w_1 + \cdots + b_m w_m \mid m \in \mathbb{N}, w_i \in \beta_2, b_i \in F\} \\
+        &= \{c_1 u_1 + \cdots + c_k u_k \mid k \in \mathbb{N}, u_i \in \beta_1 \cup \beta_2, c_i \in F\}
+        = \langle \beta_1 \cup \beta_2 \rangle
+    \end{align*}
+    Thus,
+    \begin{align*}
+        \dim(W_1 + W_2) = \sharp(\beta_1 \cup \beta_2) \leq \sharp \beta_1 + \sharp \beta_2 = \dim W_1 + \dim W_2
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2 \leq V$ be subspaces such that $V = W_1 \oplus W_2$. \\
+    If $\beta_1, \beta_2$ is basis of $W_1, W_2$ respectively, then $\beta_1 \cap \beta_2 = \emptyset$ and $\beta_1 \cup \beta_2$ is basis of $V$.
+\end{theorem}
+\begin{proof}
+    If $\beta_1 \cap \beta_2$ is not empty, the for some $x \in \beta_1 \cap \beta_2$, $x \in W_1 \cap W_2$. It is contradiction to $V = W_1 \oplus W_2$. \\
+    And, $\beta_1 \cup \beta_2$ spans $V$ because:
+    \begin{align*}
+        \langle \beta_1 \cup \beta_2 \rangle = \langle \beta_1 \rangle + \langle \beta_2 \rangle = W_1 + W_2 = V
+    \end{align*}
+    Now, to show linearly independent, suppose that some linear combination of above vectors be zero. That is,
+    \begin{align*}
+        &a_1 v_1 + \cdots + a_n v_n = 0 \quad (a_i \in F, v_i \in \beta_1 \cup \beta_2)
+    \end{align*}
+    Then, all coefficients must be zero because $\beta_1, \beta_2$ are linearly independent.
+\end{proof}
+The below theorem is converse statement of above.
+\begin{theorem}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2$ be subspaces with disjoint basis $\beta_1, \beta_2$ respectively.
+    If $\beta_1 \cup \beta_2$ is basis for $V$, then $V = W_1 \oplus W_2$. 
+\end{theorem}
+\begin{proof}
+    Since $\beta_1 \cup \beta_2$ spans $V$, 
+    \begin{align*}
+        V = \langle \beta_1 \cup \beta_2 \rangle = \langle \beta_1 \rangle + \langle \beta_2 \rangle = W_1 + W_2
+    \end{align*}
+    And, to show $W_1 \cap W_2 = \{0\}$, suppose that there exists a non-zero vector $v \in W_1 \cap W_2$. \\
+    Then, there exist two different representation of $v$ respect with to $\beta_1$ and $\beta_2$:
+    \begin{align*}
+        v = a_1 v_1 + \cdots + a_n v_n = b_1 w_1 + \cdots + b_m 
+    \end{align*}
+    where $a_i, b_i \in F, v_i \in \beta_1, w_i \in \beta_2$. But, the disjointness and linearly indenpendent implies all $a_i = b_i = 0$. \\
+    Thus, $v = 0$. It is contradiction.
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be a Vector Space over $F$, $W \leq V$ be a subspace. Put $\beta, \gamma$ be basis of $V, W$ respectively. \\
+    If $\gamma \subset \beta$, then the set of cosets
+    \begin{align*}
+        \mathcal{B} = \{v + W \mid v \in \beta \setminus \gamma\}
+    \end{align*}
+    is basis of a Quotient Space $V / W$.
+\end{theorem}
+\begin{proof}
+    Denote $\beta = \{v_i \mid i \in I\}$ and $\gamma = \{v_i \mid i \in E\}$ where $E \subset I$.
+\end{proof}
+
+\newpage
+\section{$\dagger$ Existence of Basis}
+\begin{theorem}
+    Every Vector Space has a Basis.
+\end{theorem}
+\begin{proof}
+    Using Zorn's Lemma. Let $V$ be a Vector Space.
+    Put $P \defequal \{S \subseteq V \mid \text{$S$ is linearly independent subset}\}$. \\
+    Clearly, $\{v\} \in P$ for any $v \in V$. Thus, $(P, \subseteq)$ is non-emepty partially ordered set which has inclusion as order. \\
+    Suppose $\mathcal{C} \subseteq P$ is a chain of $P$. If $\mathcal{C} = \emptyset$,
+    then $\{v\}$ is upper bound of $\mathcal{C}$ for any $v \in V$. Thus, assume $\mathcal{C} \neq \emptyset$. \\
+    To show that $\mathcal{C}$ has an upper bound in $P$, denote the union of all elements in the chain:
+    \begin{align*}
+        B = \bigcup_{\beta \in \mathcal{C}} \beta
+    \end{align*}
+    Clearly this is upper bound of $\mathcal{C}$. Hence, enough to show that $B$ is linearly independent; That is, $B \in P$. \\
+    Suppose that $B$ is linearly dependent. Then, there exist finite vectors in $B$ and scalars such that
+    \begin{align*}
+        a_1 v_1 + \cdots + a_n v_n = 0
+    \end{align*}
+    for some $a_j$ is not zero.
+    Since $\mathcal{C}$ is a Chain, there exists some subset of $\mathcal{C}$ which containing $\{v_1, \ldots, v_n \}$. \\
+    Because for each $v_i$, there exists $\beta_i \in \mathcal{C}$ such that $v_i \in \beta_i$, and
+    \begin{align*}
+        \{v_1, \ldots, v_n \} \subseteq \bigcup_{i=1}^n \beta_i \overset{(*)}{\in} \mathcal{C}
+    \end{align*}
+    The inclusion $(*)$ is given by finite construction: for any $\beta_i, \beta_j \in \mathcal{C}$,
+    $\beta_i \subseteq \beta_j$ or $\beta_i \supseteq \beta_j$. \\
+    Thus, the union of two elements in the chain is either one. 
+    This is contradiction that the finite union is linearly independent, being it is contained in $P$.
+    In sum, $\mathcal{C}$ has an upper bound in $P$. \\
+    By Zorn's Lemma,
+    there exists a Maximal $\mathcal{M} \subsetneq V$ which is linearly independent, and satisfies
+    \begin{center}
+        If $\beta \subseteq V$ is linearly independent, then $\beta \subseteq \mathcal{M}$.
+    \end{center}
+    Lastly, if $\langle \mathcal{M} \rangle \subsetneq V$, then there exists $v \in V \setminus \langle \mathcal{M} \rangle$ such that
+    $\mathcal{M} \subsetneq \mathcal{M} \cup \{v\}$. \\
+    But, this implies $\mathcal{M} \cup \{v\}$ is linearly independent and
+    proper supset of $\mathcal{M}$, contradiction.  \\
+    Consquently, $\langle \mathcal{M} \rangle = V$.
+\end{proof}
+
+\section{Linear Map}
+\begin{definition}
+    Suppose that $V, W$ are Vector Space over a field $F$.\\
+    A map $\mathcal{L}:V \to W$ is called \textit{Linear Map} if:
+    \begin{center}
+        For any $a \in F$ and $v_1, v_2 \in V$, $\mathcal{L}(a \cdot v_1 + v_2) = a \cdot \mathcal{L}(v_1) + \mathcal{L}(v_2)$
+    \end{center}
+\end{definition}
+
+\begin{theorem}
+    Let $V, W$ be Vector Space over $F$, and $\beta$ be a basis of $V$. \\
+    For any map $f:\beta \to W$, there exists unique linear map $T:V \to W$ such that
+    \begin{align*}
+        \forall v \in \beta,\ T(v) = f(v)
+    \end{align*}
+    Specifically,
+    \begin{align*}
+        T:V \to W: \sum_{i=1}^{n} a_i \cdot v_i \mapsto \sum_{i=1}^{n} a_i \cdot f(v_i)
+    \end{align*}
+    where $\dis V = \left\{ \sum_{i=1}^{n} a_i \cdot v_i \;\middle|\; n \in \mathbb{N}, a_i \in F, v_i \in \beta \right\}$
+\end{theorem}
+\begin{proof}
+    Enough to Show that: $T$ is linear, $T$ satisfies the Condition, and Uniqueness. \\
+    Let $x,y \in V$ and $\alpha \in F$ be given. Then, the vectors $x,y$ can be represented unique linear combination forms:
+    \begin{align*}
+        x = \sum_{i=1}^{n} a_i \cdot v_i,\
+        y = \sum_{i=1}^{n} b_i \cdot v_i
+    \end{align*}
+    where $a_i, b_i \in F,\ v_i \in \beta$. Now,
+    \begin{align*}
+        T(\alpha \cdot x + y)
+        &= T\left( \alpha \cdot \left( \sum_{i=1}^{n} a_i \cdot v_i \right) + \left( \sum_{i=1}^{n} b_i \cdot v_i \right) \right)
+        = T\left( \sum_{i=1}^{n} (\alpha a_i + b_i) \cdot v_i \right)  \\
+        &= \sum_{i=1}^{n} (\alpha a_i + b_i) \cdot f(v_i)
+        = \alpha \cdot \left(\sum_{i=1}^{n} a_i \cdot f(v_i) \right) + \left( \sum_{i=1}^{n} b_i \cdot f(v_i) \right)\\
+        &= \alpha \cdot T\left(\sum_{i=1}^{n} a_i \cdot v_i\right) + T \left(\sum_{i=1}^{n} b_i \cdot v_i \right)
+        = \alpha \cdot T(x) + T(y)
+    \end{align*}
+    Thus, $T$ is linear map. Since $\beta$ is basis, for all $v \in \beta,\ T(v) = f(v)$ clearly. \\
+    And, to show the Uniqueness, suppose that $U:V \to W$ is a linear map such that $\forall v \in \beta,\ U(v) = f(v)$. \\
+    Then, for any vector $x \in V$ which has a linear combination form $x = \sum_{i=1}^{n} a_i v_i$,
+    \begin{align*}
+        U(x) = U \left( \sum_{i=1}^{n} a_i v_i \right)
+        = \sum_{i=1}^{n} a_i U(v_i)
+        = \sum_{i=1}^{n} a_i f(v_i)
+        = T(x)
+    \end{align*}
+    Consequently, $U = T$.
+\end{proof}
+
+\newpage
+\begin{theorem}
+    Let $V, W$ be Vector Space over $F$, and $T: V \to W$ be a linear map. 
+    \\ Put $\beta \subset V$ be a basis of $V$. Then,
+    \begin{align*}
+        \im T = \langle T[\beta] \rangle
+    \end{align*}
+    Remark: in definition,
+    \begin{align*}
+        \im T \defequal \{T(v) \mid v \in V\},\
+        \langle T[\beta] \rangle \defequal 
+        \left\{a_1 T(v_1) + \cdots + a_n T(v_n) \;\middle|\; n \in \mathbb{N}, a_i \in F, v_i \in \beta \right\}
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Trivial.
+\end{proof}
+
+\section{Direct Sum and Projection}
+\begin{definition}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2 \leq V$ be subspaces. \\
+    $V$ is called \textit{direct sum} of $W_1$ and $W_2$ if:
+    $V = W_1 + W_2$ and $W_1 \cap W_2 = \{0\}$.
+\end{definition}
+
+\begin{theorem}
+    Let $V$ be a Vector Space over $F$, and $W_1, W_2 \leq V$ be subspaces. Then, TFAE:
+    \begin{align*}
+        V = W_1 \oplus W_2 \iff
+        \forall v \in V,\
+        \exists ! x_1 \in W_1, x_2 \in W_2 \st
+        v = x_1 + x_2
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Suppose that $V = W_1 \oplus W_2$. Enough to show: $v$ has unique representation. \\
+    For some $x_1, y_1 \in W_1, x_2, y_2 \in W_2$, $v = x_1 + x_2 = y_1 + y_2$ implies
+    $x_1 - y_1 = y_2 - x_2$. \\
+    Now, $x_1 - y_1 \in W_1$ and $y_2 - x_2 \in W_2$ and $W_1 \cap W_2 = \{0\}$ implies $x_1 - y_1 = y_2 - x_2 = 0$. \\
+    Convesely, enough to show that $W_1 \cap W_2 = \{0\}$. \\
+    Suppose that there exists non-zero element $v \in W_1 \cap W_2$.
+    Then, zero can be represented in two different forms:
+    \begin{align*}
+        0 = 0 + 0 = v + (-v)
+    \end{align*}
+    That is, the representation of zero by a sum of $W_1$ and $W_2$ is not unique, which is a contradiction.
+\end{proof}
+
+\begin{definition}
+    Let $V$ be a Vector Space over $F$ and $W_1, W_2 \leq V$ be subspace such that $V = W_1 \oplus W_2$. \\
+    The following map $T$ is called \textit{projection on $W_1$ along $W_2$}:
+    \begin{align*}
+        T:V \to V:x_1 + x_2 \mapsto x_1 \ \operatorname{where} \ x_1 \in W_1, x_2 \in W_2
+    \end{align*}
+    The well-definedness is allowed by above theorem.
+\end{definition}
+\begin{theorem}
+    Let $T:V \to V$ be a projection on $W_1$ along $W_2$. Then,
+    \begin{enumerate}
+        \item $T$ is linear map.
+        \item $W_1 = \{x \in V \mid T(x) = x\} = \im T$.
+        \item $W_2 = \ker T$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Linearlity is clear: \\
+    For any $x = x_1 + x_2 \in V$ and $y = y_1 + y_2 \in V$ where $x_1, y_1 \in W_1, x_2, y_2 \in W_2$, $\alpha \in F$,
+    \begin{align*}
+        T(\alpha x + y)
+        = T(\alpha x_1 + \alpha x_2 + y_1 + y_2)
+        = T(\alpha x_1 + y_1 + \alpha x_2 + y_2)
+        = \alpha x_1 + y_1
+        = \alpha T(x_1 + x_2) + T(y_1 + y_2)
+        = \alpha T(x) + T(y)
+    \end{align*}
+    Next, $W_1 \subseteq \{x \in V \mid T(x) = x\}$ is clear.
+    And, represent $x \in V$ as $x = x_1 + x_2$ where $x_i \in W_i$. \\
+    Then, $T(x) = x$ implies $x_2 = 0$, thus $x \in W_1$. Therefore, $W_1 = \{x \in V \mid T(x) = x\}$. And,
+    \begin{align*}
+        \im T = T[V] 
+        = T[W_1 \oplus W_2] 
+        = \{T(x_1 + x_2) \mid x_1 \in W_1, x_2 \in W_2\}
+        = W_1
+    \end{align*}
+    $W_2 \subseteq \ker T$ is clear. Suppose that there exists non-zero $v \in W_2$ with $v \notin \ker T$. \\
+    Then, $T(v) = 0$ and $v \notin \ker T$, which is contradiction.
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be a finite-dimensional Vector Space over $F$, and $W \leq V$ be a subspace. \\
+    Then, there exists a subspace $W'$ and a projection $T:V \to V$ on $W$ along $W'$.
+\end{theorem}
+\begin{proof}
+    Let basis of $V$ be $\beta = \{v_i \mid 1 \leq i \leq n\}$.
+\end{proof}
